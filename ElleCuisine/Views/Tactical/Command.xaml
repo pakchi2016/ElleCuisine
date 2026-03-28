@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="MaidensRecipe.Views.Tactical.Command"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+
+    <Border BorderBrush="#333333" BorderThickness="2" Background="#2D2D30" CornerRadius="5" Margin="5">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="ターン経過 (獲物を待つ)" Width="220" Height="45" Margin="10" Background="#444" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <Button Content="罠・設備管理 (詳細)" Width="220" Height="45" Margin="10" Background="#2F4F6B" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <Button Content="収容所・眷属管理 (詳細)" Width="220" Height="45" Margin="10" Background="#6B2F2F" Foreground="White" FontSize="16" FontWeight="Bold"/>
+        </WrapPanel>
+    </Border>
+</UserControl>

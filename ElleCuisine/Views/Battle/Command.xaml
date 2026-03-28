@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="MaidensRecipe.Views.Battle.Command"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+
+    <Border BorderBrush="#333333" BorderThickness="2" Background="#2D2D30" CornerRadius="5" Margin="5">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="捕獲触手 (前衛HP攻撃)" Width="220" Height="45" Margin="10" Background="#6B2F2F" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <Button Content="精神汚染 (後衛にも有効)" Width="220" Height="45" Margin="10" Background="#2F4F6B" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <Button Content="防御 (HP温存)" Width="220" Height="45" Margin="10" Background="#444" Foreground="White" FontSize="16" FontWeight="Bold"/>
+        </WrapPanel>
+    </Border>
+</UserControl>

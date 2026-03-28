@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="MaidensRecipe.Views.Tactical.Side"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+
+    <UserControl.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="Border" Background="#333" BorderBrush="#444" BorderThickness="1,1,1,0" Margin="0,0,2,0" Padding="10,5" CornerRadius="3,3,0,0">
+                            <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#252526" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                                <Setter Property="Foreground" Value="#FFC107" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Foreground" Value="#AAAAAA" />
+                                <Setter Property="FontWeight" Value="Normal" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Border BorderBrush="#333333" BorderThickness="2" Background="#252526" CornerRadius="5" Margin="5">
+        <TabControl Background="Transparent" BorderThickness="0" Margin="10,10,10,0">
+            <TabItem Header="拠点・罠">
+                <StackPanel Margin="5,15,5,5">
+                    <TextBlock Text="◆ 備蓄リソース" Foreground="#AAAAAA" Margin="0,5"/>
+                    <TextBlock Text="生体エネルギー : 4,500" Foreground="#4CAF50" FontSize="16" FontWeight="Bold" Margin="10,2"/>
+                    <TextBlock Text="魔力結晶 : 1,200" Foreground="#2196F3" FontSize="16" FontWeight="Bold" Margin="10,2"/>
+                    <TextBlock Text="堕落の雫 : 3" Foreground="#FFC107" FontSize="16" FontWeight="Bold" Margin="10,2"/>
+                    <Separator Margin="0,15" Background="#444"/>
+                    <TextBlock Text="◆ 罠の環境情報" Foreground="#AAAAAA" Margin="0,5"/>
+                    <TextBlock Text="罠危険度 : 警戒レベル3" Foreground="#FF5252" FontSize="14" Margin="10,2"/>
+                    <TextBlock Text="オブジェクト係数 : Bランク" Foreground="White" FontSize="14" Margin="10,2"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="設備・触手">
+                <StackPanel Margin="5,15,5,5">
+                    <TextBlock Text="◆ 稼働中の主要設備" Foreground="#AAAAAA" Margin="0,5"/>
+                    <TextBlock Text="娼婦宿 : Lv.2 (稼働中)" Foreground="#E91E63" FontSize="14" Margin="10,2"/>
+                    <TextBlock Text="鍛冶場 : Lv.1 (待機中)" Foreground="#FF9800" FontSize="14" Margin="10,2"/>
+                    <Separator Margin="0,15" Background="#444"/>
+                    <TextBlock Text="◆ 捕獲用触手ステータス" Foreground="#AAAAAA" Margin="0,5"/>
+                    <TextBlock Text="物理触手 HP: 1000 / ATK: 150" Foreground="#4CAF50" FontSize="14" Margin="10,2"/>
+                    <TextBlock Text="洗脳触手 INT: 85 (支配力)" Foreground="#9C27B0" FontSize="14" Margin="10,2"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="収容所">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5,15,5,5">
+                    <StackPanel>
+                        <TextBlock Text="◆ 施設利用状況" Foreground="#AAAAAA" Margin="0,5"/>
+                        <Separator Margin="0,10" Background="#444"/>
+                        <TextBlock Text="◆ 管理下の乙女" Foreground="#AAAAAA" Margin="0,5"/>
+
+                        <ItemsControl ItemsSource="{Binding PrisonRoster}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#333" Margin="0,3" Padding="5" CornerRadius="2">
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">
+                                    <Run Text="[" Foreground="#FFC107"/>
+                                    <Run Text="{Binding CurrentState}" Foreground="#FFC107"/>
+                                    <Run Text="] " Foreground="#FFC107"/>
+                                    <Run Text="{Binding Name}" Foreground="White"/>
+                                            </TextBlock>
+                                            <TextBlock Foreground="#CCC" FontSize="11">
+                                    <Run Text="ジョブ: "/>
+                                    <Run Text="{Binding JobClass}"/>
+                                            </TextBlock>
+                                            <TextBlock Foreground="#FF5252" FontSize="11">
+                                    <Run Text="消費生体エネルギー: "/>
+                                    <Run Text="{Binding MaintenanceCost}"/>
+                                    <Run Text=" EN/T"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Border>
+</UserControl>

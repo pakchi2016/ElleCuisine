@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="MaidensRecipe.Views.Harvest.Side"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:comp="clr-namespace:MaidensRecipe.Components"
+             xmlns:b="clr-namespace:MaidensRecipe.Behaviors"
+             Background="Transparent">
+
+    <UserControl.Resources>
+        <Style x:Key="TargetPartStyle" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="Border" Background="#2A2A2A" BorderBrush="#444" BorderThickness="1" CornerRadius="3" Margin="2">
+                            <ContentPresenter Margin="5"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#4A148C" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#E040FB" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="PartButtonTemplate">
+            <ToggleButton Style="{StaticResource TargetPartStyle}" IsChecked="{Binding IsTargeted}">
+                <StackPanel Margin="2">
+                    <TextBlock Text="{Binding Name}" Foreground="White" Margin="0,0,0,2"/>
+                    <ProgressBar Height="8"
+                             b:ProgressBarBehavior.AnimatingValue="{Binding CurrentPleasure}" 
+                             Minimum="0" Maximum="{Binding MaxPleasure}"
+                             Foreground="#FF69B4" Background="#1A1A1A" BorderBrush="#333" BorderThickness="1" />
+                </StackPanel>
+            </ToggleButton>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Border BorderBrush="#333333" BorderThickness="2" Background="#252526" CornerRadius="5" Margin="5">
+        <StackPanel Margin="15">
+            <TextBlock Foreground="#E91E63" FontSize="20" FontWeight="Bold" Margin="0,0,0,5">
+                <Run Text="【 搾取：" />
+                <Run Text="{Binding maidenBase.Name}" />
+                <Run Text=" 】" />
+            </TextBlock>
+
+            <Grid Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <ProgressBar Grid.Column="0" b:ProgressBarBehavior.AnimatingValue="{Binding maidenBase.CurrentStamina}" Minimum="0" Maximum="{Binding maidenBase.MaxStamina}" Margin="2" Height="8" Background="#1A1A1A" BorderBrush="#333" BorderThickness="1"/>
+
+                <comp:StatusBar Grid.Column="1" Title="MEN" TextColor="#2196F3" BarColor="#2196F3" Value="{Binding maidenBase.CurrentMental}" Maximum="{Binding maidenBase.MaxMental}" Margin="2"/>
+                <comp:StatusBar Grid.Column="2" Title="DIG" TextColor="#FFC107" BarColor="#FFC107" Value="{Binding maidenBase.CurrentDignity}" Maximum="{Binding maidenBase.MaxDignity}" Margin="2"/>
+            </Grid>
+
+            <StackPanel Margin="0,5">
+                <comp:StatusBar Title="興奮" TextColor="#E91E63" BarColor="#E91E63" BarHeight="12" ShowValueText="False" 
+                    Value="{Binding maidenBase.Excitement}" Maximum="100" Margin="0,2"/>
+            </StackPanel>
+
+            <Separator Margin="0,5" Background="#444"/>
+
+            <Grid Margin="0,5">
+                <TextBlock Text="◆ ターゲット部位の選択" Foreground="#E040FB" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="触手同期レベル: " Foreground="#AAAAAA" FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock Text="2 / 3" Foreground="#E040FB" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <UniformGrid Columns="2">
+                <ContentControl Content="{Binding parts.Mouth}" Tag="口" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Urethra}" Tag="尿道" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Breasts}" Tag="胸" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Anus}" Tag="尻穴" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Clitoris}" Tag="クリトリス" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Armpits}" Tag="脇" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Vagina}" Tag="膣" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Nave}" Tag="へそ" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Womb}" Tag="子宮" ContentTemplate="{StaticResource PartButtonTemplate}" />
+                <ContentControl Content="{Binding parts.Feet}" Tag="足" ContentTemplate="{StaticResource PartButtonTemplate}" />
+            </UniformGrid>
+        
+            <Border Background="#1A1A1A" BorderBrush="#E040FB" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                <StackPanel>
+                    <TextBlock Text="◆ 精神分析レポート" Foreground="#E040FB" FontWeight="Bold" Margin="0,0,0,5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,2">
+                        <TextBlock Text="抵抗感：" Foreground="Gray" Width="60"/>
+                        <TextBlock Text="{Binding maidenBase.AsceticismHintText}" Foreground="#FFB74D" FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,2">
+                        <TextBlock Text="所見　：" Foreground="Gray" Width="60"/>
+                        <TextBlock Text="{Binding maidenBase.PersonalityHintText}" Foreground="#BA68C8" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Expander Header="[Debug] 内部パラメータ確認" Foreground="Red" BorderBrush="Red" BorderThickness="1" Margin="0,10,0,0">
+                <Border Background="#330000" Padding="10">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="生ジョブ：" Foreground="White" Width="80"/>
+                            <TextBlock Text="{Binding JobClass}" Foreground="Yellow"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="生・禁欲度：" Foreground="White" Width="80"/>
+                            <TextBlock Text="{Binding Asceticism}" Foreground="Yellow"/>
+                            <TextBlock Text=" (全体倍率: " Foreground="Gray"/>
+                            <TextBlock Text="{Binding StaticGlobalMultiplier, StringFormat={}{0:F2}倍}" Foreground="Yellow"/>
+                            <TextBlock Text=")" Foreground="Gray"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="生・性格：" Foreground="White" Width="80"/>
+                            <TextBlock Text="{Binding Personality}" Foreground="Yellow"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Expander>
+        </StackPanel>
+    </Border>
+    
+</UserControl>

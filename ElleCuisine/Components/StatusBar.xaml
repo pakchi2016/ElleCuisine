@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="MaidensRecipe.Components.StatusBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root" Background="Transparent">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <StackPanel Margin="0,2">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+            <TextBlock Text="{Binding Title, ElementName=Root}" 
+                       Foreground="{Binding TextColor, ElementName=Root}" 
+                       FontSize="11" FontWeight="Bold"/>
+
+            <TextBlock Text="{Binding SubTitle, ElementName=Root}" 
+                       Foreground="{Binding TextColor, ElementName=Root}" 
+                       FontSize="11" Margin="4,0,0,0"/>
+
+            <TextBlock Foreground="{Binding TextColor, ElementName=Root}" 
+                       FontSize="11" FontWeight="Bold" Margin="4,0,0,0"
+                       Visibility="{Binding ShowValueText, ElementName=Root, Converter={StaticResource BoolToVis}}">
+                <Run Text="{Binding Value, ElementName=Root}"/>
+                <Run Text="/"/>
+                <Run Text="{Binding Maximum, ElementName=Root}"/>
+            </TextBlock>
+        </StackPanel>
+
+        <ProgressBar Height="{Binding BarHeight, ElementName=Root}" 
+                     BorderThickness="0" Background="#333"
+                     Value="{Binding Value, ElementName=Root}" 
+                     Maximum="{Binding Maximum, ElementName=Root}" 
+                     Foreground="{Binding BarColor, ElementName=Root}"/>
+    </StackPanel>
+</UserControl>
