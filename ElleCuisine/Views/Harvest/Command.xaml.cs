@@ -35,7 +35,7 @@ namespace MaidensRecipe.Views.Harvest
                     // ==================================================
                     // 3. 動的倍率 (後天的な本能・開発度)
                     // ==================================================
-                    double dynamicGlobal = target.maidenBase.dynamicGlobalPleasure; // 興奮度に応じた全体倍率
+                    double dynamicGlobal = target.maidenBase.DynamicGlobalPleasure; // 興奮度に応じた全体倍率
                     double dynamicLocal = targetedPart.SensitivityBuff; // 感度による倍率
 
                     // ==================================================

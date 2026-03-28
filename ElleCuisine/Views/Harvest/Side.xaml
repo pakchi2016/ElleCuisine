@@ -46,26 +46,46 @@
         <StackPanel Margin="15">
             <TextBlock Foreground="#E91E63" FontSize="20" FontWeight="Bold" Margin="0,0,0,5">
                 <Run Text="【 搾取：" />
+                <Run Text="{Binding maidenBase.JobClass}" />
+                <Run Text=" / " />
                 <Run Text="{Binding maidenBase.Name}" />
                 <Run Text=" 】" />
             </TextBlock>
 
             <Grid Margin="0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ProgressBar Grid.Column="0" b:ProgressBarBehavior.AnimatingValue="{Binding maidenBase.CurrentStamina}" Minimum="0" Maximum="{Binding maidenBase.MaxStamina}" Margin="2" Height="8" Background="#1A1A1A" BorderBrush="#333" BorderThickness="1"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Foreground="#E040FB" FontWeight="Bold" HorizontalAlignment="Left">
+                    <Run Text="◆ 体力: " />
+                    <Run Text="{Binding maidenBase.CurrentStamina}" />
+                    <Run Text=" / " />
+                    <Run Text="{Binding maidenBase.MaxStamina}" />
+                </TextBlock>
+                <ProgressBar Grid.Row="1" Grid.Column="0" 
+                             b:ProgressBarBehavior.AnimatingValue="{Binding maidenBase.CurrentStamina}" Minimum="0" Maximum="{Binding maidenBase.MaxStamina}" 
+                             Height="8" VerticalAlignment="Top"
+                             Background="#1A1A1A" BorderBrush="#333" BorderThickness="1"/>
 
                 <comp:StatusBar Grid.Column="1" Title="MEN" TextColor="#2196F3" BarColor="#2196F3" Value="{Binding maidenBase.CurrentMental}" Maximum="{Binding maidenBase.MaxMental}" Margin="2"/>
                 <comp:StatusBar Grid.Column="2" Title="DIG" TextColor="#FFC107" BarColor="#FFC107" Value="{Binding maidenBase.CurrentDignity}" Maximum="{Binding maidenBase.MaxDignity}" Margin="2"/>
             </Grid>
 
             <StackPanel Margin="0,5">
-                <comp:StatusBar Title="興奮" TextColor="#E91E63" BarColor="#E91E63" BarHeight="12" ShowValueText="False" 
-                    Value="{Binding maidenBase.Excitement}" Maximum="100" Margin="0,2"/>
+                <TextBlock Foreground="#E91E63" FontWeight="Bold" Margin="0,0,0,5">
+                    <Run Text="◆ 興奮度" />
+                    <Run Text=" (快楽値蓄積倍率: "/>
+                    <Run Text="{Binding maidenBase.DynamicGlobalPleasure, Mode=OneWay}" />
+                    <Run Text="倍)" />
+                </TextBlock>
+                <ProgressBar Height="8" b:ProgressBarBehavior.AnimatingValue="{Binding maidenBase.Excitement}" Minimum="0" Maximum="100" Foreground="#E91E63" Background="#1A1A1A" BorderBrush="#333" BorderThickness="1" Margin="0,2"/>
             </StackPanel>
 
             <Separator Margin="0,5" Background="#444"/>

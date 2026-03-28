@@ -100,10 +100,11 @@ namespace MaidensRecipe.Models
             {
                 _excitement = Math.Max(0, Math.Min(100, value));
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(DynamicGlobalPleasure));
             }
         }
 
-        public double dynamicGlobalPleasure => 1.0 + (_excitement / 100.0);
+        public double DynamicGlobalPleasure => 1.0 + (_excitement / 100.0);
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)

@@ -4,7 +4,7 @@
         xmlns:tactical="clr-namespace:MaidensRecipe.Views.Tactical"
         xmlns:battle="clr-namespace:MaidensRecipe.Views.Battle"
         xmlns:harvest="clr-namespace:MaidensRecipe.Views.Harvest"
-        Title="Maiden's Recipe" Height="720" Width="1280" Background="#1E1E1E">
+        Title="Maiden's Recipe" Height="800" Width="1280" Background="#1E1E1E">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
